@@ -1,7 +1,7 @@
-Package: StructureTimeDiagram
+Package: STdiag
 Type: Package
 Title: This package provides functions to plot a structure-time diagram
-Version: 1.0
+Version: 1.0-1
 Date: 2012-10-23
 Author: Vincent Le Bourlot
 Maintainer: Vincent Le Bourlot <vincent.le.bourlot@ens.fr>
@@ -10,7 +10,6 @@ Description: This package contains two functions to plot a structure-time
   and the interpolation. An example of the use of the function is given using 
   a sample data set.
 Depends: R(>= 2.14.0), lattice, akima, fields
-Imports: lattice, akima, fields
 LazyLoad: yes
 LazyData: yes
-License: GPL (>= 2)
+License: CeCILL (file LICENSE)
