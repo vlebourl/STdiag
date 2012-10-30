@@ -47,23 +47,23 @@ For further details on the use of interp, please refer to help(interp).
 # an example using the data volcano
 
 require(lattice)
-# Load volcano
-data(volcano)
-
-# Transform the data to be plotted with lattice function levelplot
-x=1:dim(volcano)[1]
-y=1:dim(volcano)[2]
-
-data=expand.grid(x,y)
-vol=cbind(data,c(volcano))
-colnames(vol)=c("x","y","z")
+# Load volcano.df and .sub, respectively a data-frame transformed version of 
+# data volcano and a subset of that data framed used to test Interpolation.
+#
+data(volcano.df)
+data(volcano.sub)
 
 # Plot the volcano with function levelpot
-STdiag(z~x*y,vol,log=FALSE,col="terrain")
+#
+STdiag(z~x*y,volcano.df,log=FALSE,col="terrain",main="Volcano")
+
+# Plot a subset of volcano that will be used to test Interpolation
+#
+STdiag(z~x*y,volcano.sub,log=FALSE,col="terrain",main="Volcano")
 
 # Interpolate with finner X and Y and plot the new volcano 
-Interpvol=Interpolation(vol,intervX=0.5,intervY=0.2)
-STdiag(z~x*y,Interpvol,log=FALSE,col="terrain")
+volcano.interp=Interpolation(volcano.sub,intervX=0.5,intervY=0.2)
+STdiag(z~x*y,volcano.interp,log=FALSE,col="terrain")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
