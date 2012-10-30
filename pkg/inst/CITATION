@@ -1,0 +1,23 @@
+bibentry("Manual",
+         title = "A package to provide a simple graphical method to reveal a structured population dynamic. ",
+         author = person("Vincent Le Bourlot"),
+         organization = "CNRS, ENS, UPMC, UMR 7625 Ecology & Evolution.",
+         address      = "7 quai St Bernard, 75005 Paris",
+         year         = version$year,
+         #url          = "http://www.R-project.org/",
+         
+         textVersion = 
+         paste("Vincent Le Bourlot (", version$year, "). ", 
+               "A package to provide a simple graphical method to reveal a structured population dynamic. ",
+               "CNRS, ENS, UPMC, UMR 7625 Ecology & Evolution.",
+              # "ISBN 3-900051-07-0, URL http://www.R-project.org/.",
+               sep=""),
+         
+         mheader = "To cite this package in publications use:",
+	 
+	 mfooter = 
+         paste("We have invested a lot of time and effort in creating R,",
+          "please cite it when using it for data analysis.",
+	  "See also", sQuote("citation(\"pkgname\")"),
+	  "for citing R packages.", sep = " ")
+	)
