@@ -5,7 +5,7 @@ Version: 1.0-1
 Date: 2012-10-23
 Author: Vincent Le Bourlot
 Maintainer: Vincent Le Bourlot <vincent.le.bourlot@ens.fr>
-Description: This package contains two functions to plot a structure-time 
+Description: This package contains functions to plot a structure-time 
   diagram with different options concerning the color scale, 
   and the interpolation. An example of the use of the function is given using 
   a sample data set.
