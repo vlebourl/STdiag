@@ -12,7 +12,8 @@ STdiag(formula=NULL, data,
     xlab = NULL, ylab = NULL, 
     log = TRUE, 
     zlim = NULL, znb = 50, 
-    color = "", bgcolor = rgb(254,254,226,maxColorValue=255))
+    color = "", bgcolor = rgb(254,254,226,maxColorValue=255)
+    )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -45,7 +46,7 @@ STdiag(formula=NULL, data,
 }
 \item{bgcolor}{
   rgb(), color of the background of the plot.
-}
+  }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
