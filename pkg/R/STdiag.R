@@ -37,7 +37,7 @@ STdiag <-
     
     # Retrieve zmin and zmax from zlim, if NULL, takes range(z)
     if(is.null(zlim)){
-      zlim=range(data[[names[1]]])
+      zlim=range(data[[names[1]]],na.rm=TRUE)
     }
     zmin=zlim[1]
     zmax=zlim[2]
@@ -73,26 +73,28 @@ STdiag <-
       
     }else{
       colKey=list(labels=list(cex=1,
-                              at=seq(zmin,zmax,signif((zmax-zmin)/6,1))
+                              at=seq(ceiling(zmin),round(zmax),signif((zmax-zmin)/6,1))
       )
       )
     }
     
     # Create the plot
+    sb <- trellis.par.get("panel.background") 
+    sb.bu <- sb
+    sb[["col"]][1] <- bgcolor
+    trellis.par.set("panel.background", sb) 
+    
     lp=levelplot(formula,data,  #formula and data to plot
                  col.regions=col,  #color scale to use
                  at=zat,  #where to put the colors
                  colorkey=colKey,  #where to draw the ticks on the color bar
                  xlab=list(xlab,cex=1),ylab=list(ylab,cex=1), #write axes labels
                  main=main,  #write main title
-                 scales=list(x=list(cex=1),y=list(cex=1),alternating=1,tck=-1), #draw ticks inside the box
-                 #custom panel fuction to add a pale yellow background to to the plot. Comment to remove
-                 panel=function(...){
-                   panel.fill(col=bgcolor)
-                   panel.levelplot(...)
-                   panel.axis("bottom",half=F,labels=F)
-                   panel.axis("left",half=F,labels=F)#    llines(line,col=1,lwd=2)
-                   #    lpoints(fit$V1,fit$V2,pch=19,cex=0.5,col=1)
-                 })
+                 scales=list(alternating=1,
+                             tck=-1), #draw ticks inside the box
+                 )
     print(lp)
+    
+    trellis.par.set("panel.background", sb.bu) 
+    
   }
