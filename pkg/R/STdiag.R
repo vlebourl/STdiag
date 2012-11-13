@@ -12,7 +12,7 @@
 #     -- bgcolor: rgb(), color of the background of the plot
 
 STdiag <-
-  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",bgcolor=rgb(254,254,226,maxColorValue=255))
+  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",panel=lattice.getOption("panel.levelplot"),bgcolor=rgb(254,254,226,maxColorValue=255))
   {
     # If formula is not specified, data must be of the form x, y, z
     if(is.null(formula) & dim(data)[2]!=3){
@@ -92,6 +92,7 @@ STdiag <-
                  main=main,  #write main title
                  scales=list(alternating=1,
                              tck=-1), #draw ticks inside the box
+                 panel=panel
                  )
     print(lp)
     
