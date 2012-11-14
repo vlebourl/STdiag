@@ -12,7 +12,9 @@ STdiag(formula=NULL, data,
     xlab = NULL, ylab = NULL, 
     log = TRUE, 
     zlim = NULL, znb = 50, 
-    color = "", bgcolor = rgb(254,254,226,maxColorValue=255)
+    color = "", bgcolor = rgb(254,254,226,maxColorValue=255),
+    scales = list(),
+    ...
     )
 }
 %- maybe also 'usage' for other objects documented here.
@@ -35,18 +37,24 @@ STdiag(formula=NULL, data,
   \item{log}{
   Boolean to choose between log scaled color gradient (TRUE) or linear (FALSE).}
   \item{zlim}{
-  numeric vector, c(zmin, zmax), specify the range of color to use. If NULL, zlim=range(z)
+  Numeric vector, c(zmin, zmax), specify the range of color to use. If NULL, zlim=range(z).
 }
   \item{znb}{
-  integer, specifies the number of colors to use
+  Integer, specifies the number of colors to use.
 }
   \item{color}{
-  character string, type of color gradient to use. can be either one of gray, topo, terrain
-  heat, tim, cm or rainbow. default is rainbow
+  Character string, type of color gradient to use. can be either one of gray, topo, terrain
+  heat, tim, cm or rainbow. default is rainbow.
 }
 \item{bgcolor}{
   rgb(), color of the background of the plot.
   }
+\item{scales}{
+  List of arguments passed to levelplot scales option.
+}
+\item{...}{
+  Further arguments passed to levelplot.
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
