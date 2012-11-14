@@ -12,7 +12,7 @@
 #     -- bgcolor: rgb(), color of the background of the plot
 
 STdiag <-
-  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",panel=lattice.getOption("panel.levelplot"),bgcolor=rgb(254,254,226,maxColorValue=255))
+  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",bgcolor=rgb(254,254,226,maxColorValue=255),scales=list(),...)
   {
     # If formula is not specified, data must be of the form x, y, z
     if(is.null(formula) & dim(data)[2]!=3){
@@ -40,11 +40,12 @@ STdiag <-
       zlim=range(data[[names[1]]],na.rm=TRUE)
     }
     zmin=zlim[1]
+    z0=min(subset(data[[names[1]]],data[[names[1]]]>0))
     zmax=zlim[2]
     
     # Create vector zat to position the colors
     if(log){
-      zat=seq(log10(zmin+1),log10(zmax+1),length.out=znb)
+      zat=seq(log10(z0),log10(zmax),length.out=znb)
     }else{
       zat=seq(zmin,zmax,length.out=znb)
     }
@@ -63,12 +64,12 @@ STdiag <-
     # Define where to draw ticks on the colorbar.
     if(log){
       # Produce vector of position of ticks
-      m1=3*log10(max(zmin,1))
+      m1=3*log10(z0)
       m2=3*log10(zmax)
       R3=signif(10^(seq(round(m1),round(m2),1)/3),1)
       # Produce list colkey
       colKey=list(labels=list(cex=1
-                              ,at=log10(R3+1)
+                              ,at=log10(R3)
                               ,labels=R3))
       
     }else{
@@ -78,11 +79,14 @@ STdiag <-
       )
     }
     
+    scales=c(scales,list(alternating=1,
+                         tck=0.5))
     # Create the plot
-    sb <- trellis.par.get("panel.background") 
+    sb <- trellis.par.get() 
     sb.bu <- sb
-    sb[["col"]][1] <- bgcolor
-    trellis.par.set("panel.background", sb) 
+    sb$panel.background$col <- bgcolor
+    sb$axis.line$lwd <-1
+    trellis.par.set(sb) 
     
     lp=levelplot(formula,data,  #formula and data to plot
                  col.regions=col,  #color scale to use
@@ -90,12 +94,11 @@ STdiag <-
                  colorkey=colKey,  #where to draw the ticks on the color bar
                  xlab=list(xlab,cex=1),ylab=list(ylab,cex=1), #write axes labels
                  main=main,  #write main title
-                 scales=list(alternating=1,
-                             tck=-1), #draw ticks inside the box
-                 panel=panel
+                 scales=scales, #draw ticks inside the box
+                 par.settings=sb,
+                 ...
                  )
-    print(lp)
-    
-    trellis.par.set("panel.background", sb.bu) 
+   trellis.par.set("panel.background", sb.bu) 
+    return(lp)
     
   }
