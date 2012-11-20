@@ -40,7 +40,7 @@ STdiag <-
       zlim=range(data[[names[1]]],na.rm=TRUE)
     }
     zmin=zlim[1]
-    z0=min(subset(data[[names[1]]],data[[names[1]]]>0))
+    z0=max(min(subset(data[[names[1]]],data[[names[1]]]>0)),zmin)
     zmax=zlim[2]
     
     # Create vector zat to position the colors
@@ -95,7 +95,6 @@ STdiag <-
                  xlab=list(xlab,cex=1),ylab=list(ylab,cex=1), #write axes labels
                  main=main,  #write main title
                  scales=scales, #draw ticks inside the box
-                 par.settings=sb,
                  ...
                  )
    trellis.par.set("panel.background", sb.bu) 
