@@ -12,7 +12,7 @@
 #     -- bgcolor: rgb(), color of the background of the plot
 
 STdiag <-
-  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",bgcolor=rgb(254,254,226,maxColorValue=255),scales=list(),...)
+  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",bgcolor=rgb(254,254,226,maxColorValue=255),scales=list(),colorkey=NULL,...)
   {
     # If formula is not specified, data must be of the form x, y, z
     if(is.null(formula) & dim(data)[2]!=3){
@@ -60,7 +60,6 @@ STdiag <-
                tim = tim.colors(I(znb+10)),
                rainbow(I(znb+10),alpha=0.8)[znb:1]
     )
-    
     # Define where to draw ticks on the colorbar.
     if(log){
       # Produce vector of position of ticks
@@ -69,16 +68,24 @@ STdiag <-
       R3=signif(10^(seq(round(m1),round(m2),1)/3),1)
       # Produce list colkey
       colKey=list(labels=list(cex=1
-                              ,at=log10(R3)
-                              ,labels=R3))
+                                ,at=log10(R3)
+                                ,labels=R3))
       
     }else{
       colKey=list(labels=list(cex=1,
-                              at=seq(ceiling(zmin),round(zmax),signif((zmax-zmin)/6,1))
-      )
-      )
+                                at=seq(signif(zmin,1),signif(zmax,1),signif((zmax-zmin)/6,1))
+        )
+        )
     }
     
+    if(is.null(colorkey)){
+      colKey=colKey
+    }else if(is.logical(colorkey) & colorkey==TRUE){
+      colKey=colKey
+    }else { #if(!is.null(colorkey))
+      colKey=colorkey
+    }
+
     scales=c(scales,list(alternating=1,
                          tck=0.5))
     # Create the plot
@@ -96,8 +103,8 @@ STdiag <-
                  main=main,  #write main title
                  scales=scales, #draw ticks inside the box
                  ...
-                 )
-   trellis.par.set("panel.background", sb.bu) 
+    )
+    trellis.par.set("panel.background", sb.bu) 
     return(lp)
     
   }
