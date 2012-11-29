@@ -14,6 +14,7 @@ STdiag(formula=NULL, data,
     zlim = NULL, znb = 50, 
     color = "", bgcolor = rgb(254,254,226,maxColorValue=255),
     scales = list(),
+    colorkey = NULL
     ...
     )
 }
@@ -51,6 +52,9 @@ STdiag(formula=NULL, data,
   }
 \item{scales}{
   List of arguments passed to levelplot scales option.
+}
+\item{colorkey}{
+  Logical or list of arguments passed to levelplot colorkey option.
 }
 \item{...}{
   Further arguments passed to levelplot.

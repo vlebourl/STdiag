@@ -66,14 +66,15 @@ STdiag <-
       m1=3*log10(z0)
       m2=3*log10(zmax)
       R3=signif(10^(seq(round(m1),round(m2),1)/3),1)
+      R3b=R3[round(seq(1,length(R3),length.out=7))]
       # Produce list colkey
       colKey=list(labels=list(cex=1
-                                ,at=log10(R3)
-                                ,labels=R3))
+                                ,at=log10(R3b)
+                                ,labels=R3b))
       
     }else{
       colKey=list(labels=list(cex=1,
-                                at=seq(signif(zmin,1),signif(zmax,1),signif((zmax-zmin)/6,1))
+                                at=seq(signif(zmin,1),signif(zmax,1),signif((zmax-zmin)/7,1))
         )
         )
     }
