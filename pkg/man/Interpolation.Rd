@@ -55,11 +55,11 @@ data(volcano.sub)
 
 # Plot the volcano with function levelpot
 #
-STdiag(z~x*y,volcano.df,log=FALSE,col="terrain",main="Volcano")
+STdiag(z~x*y,volcano.df,log=FALSE,color="terrain",main="Volcano")
 
 # Plot a subset of volcano that will be used to test Interpolation
 #
-STdiag(z~x*y,volcano.sub,log=FALSE,col="terrain",main="Volcano")
+STdiag(z~x*y,volcano.sub,log=FALSE,color="terrain",main="Volcano")
 
 # Interpolate with finner X and Y and plot the new volcano 
 volcano.interp=Interpolation(volcano.sub,intervX=0.5,intervY=0.2)
