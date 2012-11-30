@@ -43,12 +43,7 @@ STdiag <-
     z0=max(min(subset(data[[names[1]]],data[[names[1]]]>0)),zmin)
     zmax=zlim[2]
     
-    # Create vector zat to position the colors
-    if(log){
-      zat=seq(log10(z0),log10(zmax),length.out=znb)
-    }else{
-      zat=seq(zmin,zmax,length.out=znb)
-    }
+    
     
     # Define the color scale
     col=switch(color,
@@ -63,14 +58,19 @@ STdiag <-
     # Define where to draw ticks on the colorbar.
     if(log){
       # Produce vector of position of ticks
-      m1=3*log10(z0)
-      m2=3*log10(zmax)
-      R3=signif(10^(seq(round(m1),round(m2),1)/3),1)
-      R3b=R3[round(seq(1,length(R3),length.out=7))]
-      # Produce list colkey
+      mat=mapply(function(x) seq(1:9)*10^x, seq(floor(log10(z0)),floor(log10(zmax))))
+      at=c(mat)
+      index=which(at>=z0 & at<=zmax)
+      at=at[index]
+      char=character(length(at))
+      match=match(mat[1,],at)
+      char[match[!is.na(match)]]=mat[1,!is.na(match)]
+      char[1]=at[1]
+      char[length(at)]=at[length(at)]
       colKey=list(labels=list(cex=1
-                                ,at=log10(R3b)
-                                ,labels=R3b))
+                                ,at=log10(at)
+                                ,labels=char)
+                  )
       
     }else{
       colKey=list(labels=list(cex=1,
@@ -79,6 +79,7 @@ STdiag <-
         )
     }
     
+    
     if(is.null(colorkey)){
       colKey=colKey
     }else if(is.logical(colorkey) & colorkey==TRUE){
@@ -86,6 +87,14 @@ STdiag <-
     }else { #if(!is.null(colorkey))
       colKey=colorkey
     }
+    
+    # Create vector zat to position the colors
+    if(log){
+      zat=seq(log10(z0),log10(zmax),length.out=znb)
+    }else{
+      zat=seq(zmin,zmax,length.out=znb)
+    }
+    
 
     scales=c(scales,list(alternating=1,
                          tck=0.5))
@@ -101,7 +110,7 @@ STdiag <-
                  at=zat,  #where to put the colors
                  colorkey=colKey,  #where to draw the ticks on the color bar
                  xlab=list(xlab,cex=1),ylab=list(ylab,cex=1), #write axes labels
-                 main=main,  #write main title
+                 main=as.character(main),  #write main title
                  scales=scales, #draw ticks inside the box
                  ...
     )

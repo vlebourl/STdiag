@@ -63,7 +63,7 @@ STdiag(z~x*y,volcano.sub,log=FALSE,color="terrain",main="Volcano")
 
 # Interpolate with finner X and Y and plot the new volcano 
 volcano.interp=Interpolation(volcano.sub,intervX=0.5,intervY=0.2)
-STdiag(z~x*y,volcano.interp,log=FALSE,col="terrain")
+STdiag(z~x*y,volcano.interp,log=FALSE,color="terrain")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
