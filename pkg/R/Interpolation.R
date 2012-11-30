@@ -17,6 +17,8 @@ Interpolation=function(Tab,intervX=NULL,intervY=NULL)
   names.Tab=names(Tab)
   colnames(Tab)=c("x","y","z")
   
+  z0=min(subset(Tab$z,Tab$z>0))
+  
   # Create vectors of single values of X and Y
   X=unique(Tab$x)
   Y=unique(Tab$y)
@@ -45,6 +47,7 @@ Interpolation=function(Tab,intervX=NULL,intervY=NULL)
   TabOut=expand.grid(xo,yo)
   colnames(TabOut)=c("x","y")
   TabOut$z=as.vector(TabI$z)
+  TabOut$z[TabOut$z<z0]=0
   colnames(TabOut)=names.Tab
   return(TabOut)
 }

@@ -14,7 +14,7 @@ STdiag(formula=NULL, data,
     zlim = NULL, znb = 50, 
     color = "", bgcolor = rgb(254,254,226,maxColorValue=255),
     scales = list(),
-    colorkey = NULL
+    colorkey = NULL,
     ...
     )
 }
