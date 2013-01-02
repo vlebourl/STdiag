@@ -51,3 +51,29 @@ Interpolation=function(Tab,intervX=NULL,intervY=NULL)
   colnames(TabOut)=names.Tab
   return(TabOut)
 }
+
+kde2dWeighted <- function (x, y, w, h, n, lims = c(range(x), range(y)),proba.min=1E-6) {
+  
+  if (missing(n)){
+    n=c(length(unique(x)),
+        length(unique(y)))
+  }
+  nx <- length(x)
+  if (length(y) != nx) 
+    stop("data vectors must be the same length")
+  n<-rep(n, length.out = 2L)
+  gx <- seq(lims[1], lims[2], length = n[1]) # gridpoints x
+  gy <- seq(lims[3], lims[4], length = n[2]) # gridpoints y
+  
+  if (missing(h)) 
+    h <- c(bandwidth.nrd(x), bandwidth.nrd(y));
+  if (missing(w)) 
+    w <- numeric(nx)+1;
+  h <- h/4
+  ax <- outer(gx, x, "-")/h[1] # distance of each point to each grid point in x-direction
+  ay <- outer(gy, y, "-")/h[2] # distance of each point to each grid point in y-direction
+  z <- (matrix(rep(w,n[1]), nrow=n[1], ncol=nx, byrow=TRUE)*matrix(dnorm(ax), n[1], nx)) %*% t(matrix(dnorm(ay), n[2], nx))/(sum(w) * h[1] * h[2]) # z is the density
+  
+  z[z<proba.min]=0
+  return(Matrix2DataFrame(mat=z,x=gx,y=gy))
+}

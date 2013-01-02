@@ -12,8 +12,26 @@
 #     -- bgcolor: rgb(), color of the background of the plot
 
 STdiag <-
-  function(formula=NULL,data,main=NULL,xlab=NULL,ylab=NULL,log=TRUE,zlim=NULL,znb=50,color="",bgcolor=rgb(254,254,226,maxColorValue=255),scales=list(),colorkey=NULL,...)
+  function(formula=NULL,data=NULL,
+           x=NULL,y=NULL,z=NULL,
+           main=NULL,
+           xlab=NULL,ylab=NULL,
+           log=TRUE,
+           zlim=NULL,znb=50,color="",
+           density=FALSE,sm,n,
+           bgcolor=rgb(254,254,226,maxColorValue=255),
+           scales=list(),
+           colorkey=NULL,
+           ...)
   {
+    if(inherits(formula,"matrix")){z=formula;formula=NULL}
+    if(inherits(formula,"data.frame")){data=formula;formula=NULL}
+    if (is.null(data)&!is.null(z))
+    {
+      data=Matrix2DataFrame(z,x,y)
+      formula=NULL
+    }
+    
     # If formula is not specified, data must be of the form x, y, z
     if(is.null(formula) & dim(data)[2]!=3){
       cat("ERROR: If formula is not specified, data must be of the form x y z.\n")
@@ -29,6 +47,27 @@ STdiag <-
       formula=as.formula(paste(names[1]," ~ ",names[2],"*",names[3],sep=""))
     }
     
+    if(density){
+      if(missing(sm)){
+        sm=0.5
+      } 
+      if(sm!=0){
+      if(sm<0.1){sm=0.1}
+      if(sm>1){sm=1}
+      
+      if(missing(n)){n=floor(c(length(unique(data[[names[2]]]))*10*sm,
+          length(unique(data[[names[3]]]))*10*sm
+          ))}
+      h1=bandwidth.nrd(data[[names[2]]])*sm
+      h2=bandwidth.nrd(data[[names[3]]])*sm
+      data=kde2dWeighted(x=data[[names[2]]],
+                          y=data[[names[3]]],
+                          w=data[[names[1]]],
+                          h=c(h1,h2),n=n
+      )
+      main=paste("Kernel density plot:",main)
+      }
+    }
     
     # If log=TRUE, transform z to 
     if(log==T){
@@ -52,8 +91,8 @@ STdiag <-
                terrain = terrain.colors(I(znb+10)),
                heat = heat.colors(I(znb+10)),
                cm = cm.colors(I(znb+10)),
-               tim = tim.colors(I(znb+10)),
-               rainbow(I(znb+10),alpha=0.8)[znb:1]
+               rainbow=rainbow(I(znb+10),alpha=0.8)[znb:1],
+               tim.colors(I(znb+10))         
     )
     # Define where to draw ticks on the colorbar.
     if(log){
