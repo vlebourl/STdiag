@@ -66,6 +66,7 @@ STdiag <-
                           h=c(h1,h2),n=n
       )
       main=paste("Kernel density plot:",main)
+      colnames(data)=names[c(2,3,1)]
       }
     }
     
