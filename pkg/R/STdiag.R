@@ -55,9 +55,13 @@ STdiag <-
       if(sm<0.1){sm=0.1}
       if(sm>1){sm=1}
       
+      
       if(missing(n)){n=floor(c(length(unique(data[[names[2]]]))*10*sm,
           length(unique(data[[names[3]]]))*10*sm
           ))}
+      if(is.na(n)){n=floor(c(length(unique(data[[names[2]]]))*10*sm,
+                               length(unique(data[[names[3]]]))*10*sm
+      ))}
       h1=bandwidth.nrd(data[[names[2]]])*sm
       h2=bandwidth.nrd(data[[names[3]]])*sm
       data=kde2dWeighted(x=data[[names[2]]],
