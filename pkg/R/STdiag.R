@@ -142,6 +142,27 @@ STdiag <-
 
     scales=c(scales,list(alternating=1,
                          tck=0.5))
+    
+    if (inherits(data[[names[2]]],"Date")){
+      Y=diff(strptime(c("2009","2010"),format='%Y'))
+      M=diff(strptime(c("2009-09-01","2009-10-01"),format='%Y-%m-%d'))
+      D=diff(strptime(c("2009-09-01","2009-09-02"),format='%Y-%m-%d'))
+      rDate=range(data[[names[2]]])
+      minD=min(diff(unique(data[[names[2]]])))
+      maxD=diff(rDate)
+      format=NULL
+      if(maxD>D){
+        format=paste0("%d")
+      }
+      if(maxD>M){
+        format=paste0(format,"-%b")
+      }
+      if(maxD>Y){
+        format=paste0(format,"-%y")
+      }
+      scales=c(scales,list(x=list(format=format)))
+    }
+    
     # Create the plot
     sb <- trellis.par.get() 
     sb.bu <- sb
