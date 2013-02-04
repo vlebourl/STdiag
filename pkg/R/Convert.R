@@ -15,15 +15,11 @@ Matrix2DataFrame=function(mat,x=NULL,y=NULL,xlab="x",ylab="y",zlab="z")
     x=seq(0,dim(mat)[1]-1)
   }
   
-  # if mat is of dim (y,x) instead of (x,y), transpose the matrix
   # if dimensions do not match, return error message
   dim=c(length(x),length(y))
-  if(sum(dim[2:1]==dim(mat))==2)
+  if(sum(dim==dim(mat))!=2)
   {
-    mat=t(mat)
-  }else if(sum(dim==dim(mat))!=2)
-  {
-    cat("ERROR: mat must be of dimension x,y or y,x.")
+    cat("ERROR: mat must be of dimension x,y.")
     return(invisible())
   }
   
@@ -42,7 +38,7 @@ Matrix2DataFrame=function(mat,x=NULL,y=NULL,xlab="x",ylab="y",zlab="z")
 # Import individual based data set: in case data set is composed of one line 
 # per individual, with time and structure in columns.
 
-Indiv2DataFrame=function(tab,nbclass=50,columns=c(1,2))
+Indiv2DataFrame=function(tab,classes=50,columns=c(1,2))
 {
   
   # define output data frame
@@ -56,18 +52,25 @@ Indiv2DataFrame=function(tab,nbclass=50,columns=c(1,2))
   # test if x is a date
   is.date = inherits(tab[,x],"Date")
   
-  # define classes for discretization of y axis variable in nbclass classes
-  ymin=min(tab[,y],na.rm=TRUE)
-  ymax=max(tab[,y],na.rm=TRUE)
+  # define classes for discretization of y axis variable in classes classes
   
-  yat=seq(ymin,ymax,length.out=nbclass+1)
-  
-  # discretize y-axis variable in nbclass classes
+  if(length(classes)==1){
+    ymin=min(tab[,y],na.rm=TRUE)
+    ymax=max(tab[,y],na.rm=TRUE)
+    yat=seq(ymin,ymax,length.out=classes+1)
+  } else if (length(classes)>1){
+    if(min(tab[,y])<min(classes) | max(tab[,y])>max(classes)){
+      cat("ERROR: 'classes' must span range of 'y'")
+      return()
+    }
+    yat=classes
+  }
+  # discretize y-axis variable in classes classes
   for(t in unique(tab[,x]))
   {
     subtab=subset(tab,tab[,x]==t)
     h=hist(subtab[,y],breaks=yat,plot=F)
-    DF=rbind(DF,x=data.frame(rep(t,nbclass),y=h$mids,counts=h$counts))
+    DF=rbind(DF,x=data.frame(t,y=h$mids,counts=h$counts))
   }
   
   colnames(DF)=c(names,"counts")
