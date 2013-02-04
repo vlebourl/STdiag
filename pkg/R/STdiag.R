@@ -16,9 +16,9 @@ STdiag <-
            x=NULL,y=NULL,z=NULL,
            main=NULL,
            xlab=NULL,ylab=NULL,
-           log=TRUE,
+           log=FALSE,
            zlim=NULL,znb=50,color="",
-           density=FALSE,sm,n,
+           smooth=FALSE,sm,n,probamin=1e-6,
            bgcolor=rgb(254,254,226,maxColorValue=255),
            scales=list(),
            colorkey=NULL,
@@ -47,7 +47,7 @@ STdiag <-
       formula=as.formula(paste(names[1]," ~ ",names[2],"*",names[3],sep=""))
     }
     
-    if(density){
+    if(smooth){
       if(missing(sm)){
         sm=0.5
       } 
@@ -59,7 +59,7 @@ STdiag <-
       if(missing(n)){n=floor(c(length(unique(data[[names[2]]]))*10*sm,
           length(unique(data[[names[3]]]))*10*sm
           ))}
-      if(is.na(n)){n=floor(c(length(unique(data[[names[2]]]))*10*sm,
+      if(any(is.na(n))){n=floor(c(length(unique(data[[names[2]]]))*10*sm,
                                length(unique(data[[names[3]]]))*10*sm
       ))}
       h1=bandwidth.nrd(data[[names[2]]])*sm
@@ -67,7 +67,7 @@ STdiag <-
       data=kde2dWeighted(x=data[[names[2]]],
                           y=data[[names[3]]],
                           w=data[[names[1]]],
-                          h=c(h1,h2),n=n
+                          h=c(h1,h2),n=n,proba.min=probamin
       )
       main=paste("Kernel density plot:",main)
       colnames(data)=names[c(2,3,1)]
@@ -143,7 +143,7 @@ STdiag <-
     scales=c(scales,list(alternating=1,
                          tck=0.5))
     
-    if (inherits(data[[names[2]]],"Date")){
+    if (inherits(data[[names[2]]],c("Date","POSIXlt"))){
       Y=diff(strptime(c("2009","2010"),format='%Y'))
       M=diff(strptime(c("2009-09-01","2009-10-01"),format='%Y-%m-%d'))
       D=diff(strptime(c("2009-09-01","2009-09-02"),format='%Y-%m-%d'))

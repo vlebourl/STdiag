@@ -44,28 +44,16 @@ For further details on the use of interp, please refer to help(interp).
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-# an example using the data volcano
+# an example using the dataset sample provided
 
-require(lattice)
-# Load volcano.df and .sub, respectively a data-frame transformed version of 
-# data volcano and a subset of that data framed used to test Interpolation.
+# Load sample
+data(sample)
+
+# Plot the data using STdiag
 #
-data(volcano.df)
-data(volcano.sub)
+STdiag(z~x*y,sample,log=TRUE)
 
-# Plot the volcano with function levelpot
-#
-STdiag(z~x*y,volcano.df,log=FALSE,color="terrain",main="Volcano")
-
-# Plot a subset of volcano that will be used to test Interpolation
-#
-STdiag(z~x*y,volcano.sub,log=FALSE,color="terrain",main="Volcano")
-
-# Interpolate with finner X and Y and plot the new volcano 
-volcano.interp=Interpolation(volcano.sub,intervX=0.5,intervY=0.2)
-STdiag(z~x*y,volcano.interp,log=FALSE,color="terrain")
+# Interpolate with finner X and Y and plot the new data 
+sample.interp=Interpolation(sample,intervX=1,intervY=0.02)
+STdiag(z~x*y,sample.interp,log=TRUE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

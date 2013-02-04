@@ -11,9 +11,9 @@ STdiag(formula=NULL,data=NULL,
            x=NULL,y=NULL,z=NULL,
            main=NULL,
            xlab=NULL,ylab=NULL,
-           log=TRUE,
+           log=FALSE,
            zlim=NULL,znb=50,color="",
-           density=FALSE,sm,n,
+           smooth=FALSE,sm,n,probamin = 1e-06,
            bgcolor=rgb(254,254,226,maxColorValue=255),
            scales=list(),
            colorkey=NULL,
@@ -45,13 +45,14 @@ STdiag(formula=NULL,data=NULL,
 }
   \item{color}{
   Character string, type of color gradient to use. can be either one of gray, topo, terrain
-  heat, tim, cm or rainbow. default is tim (see tim.colors in package fields for details).
+  heat, tim, cm or rainbow. default is tim (see \link[fields]{tim.colors} for details).
 }
-\item{density}{Logical. If TRUE, STdiag plots a 2d kernel density plot instead of the number of individuals. Kernel density calculation is based on \link{kde2d} in package MASS.}
-\item{sm}{If density is TRUE, scalar in [0,1] defining the smoothness of the kernel density estimation. 0 for the raw data, 1 for bandwith in x and y direction given by /link{bandwidth.nrd} (package MASS).}
-\item{n}{If density is TRUE, number of points on the x y grid.}
+\item{smooth}{Logical. If TRUE, STdiag plots a 2d kernel density plot instead of the number of individuals. Kernel density calculation is based on \link[MASS]{kde2d}.}
+\item{sm}{If smooth is TRUE, scalar in [0,1] defining the smoothness of the kernel density estimation. 0 for the raw data, 1 for bandwith in x and y direction given by /link[MASS]{bandwidth.nrd}.}
+\item{n}{If smooth is TRUE, number of points on the x y grid.}
+\item{probamin}{Numeric setting the identity with 0 when computing the kernel density estimate, for comfort of plotting. Default value is set to 1e-06.}
 \item{bgcolor}{
-  rgb(), color of the background of the plot.
+  \link[grDevices]{rgb}, color of the background of the plot.
   }
 \item{scales}{
   List of arguments passed to levelplot scales option.
@@ -67,7 +68,7 @@ STdiag(formula=NULL,data=NULL,
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-No values is returned. Only the diagram is displayed. To record the plot, use usual display functions such as pdf().}
+No values is returned. Only the diagram is displayed. To record the plot, use usual display functions such as \link[grDevices]{pdf} for instance.}
 \references{
 %% ~put references to the literature/web site here ~
 }
@@ -75,13 +76,13 @@ No values is returned. Only the diagram is displayed. To record the plot, use us
 Vincent Le Bourlot
 }
 \note{
-For further details on the use of levelplot, please refer to help(levelplot).
+For further details on the use of \link[lattice]{levelplot}, please refer to help(levelplot).
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{levelplot}}
+\code{\link{levelplot}, \link[STdiag]{sample}}
 }
 \examples{
 data(sample)
