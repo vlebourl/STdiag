@@ -5,7 +5,7 @@
 A function to add specific options to levelplot for plotting structure-time diagram.
 }
 \description{
-This function is based on the lattice function levelplot and is specifically designed to help plot structure-time diagrams. It takes as input a data frame of the form x, y, z, and plots z~x*y.}
+This function is based on the lattice function \link[lattice]{levelplot} and is specifically designed to help plot structure-time diagrams. It takes as input a data frame of the form x, y, z, and plots z~x*y.}
 \usage{
 STdiag(formula=NULL,data=NULL,
            x=NULL,y=NULL,z=NULL,

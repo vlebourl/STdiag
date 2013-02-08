@@ -9,13 +9,13 @@ Function to convert an individual based set of measurements into a data frame re
 }
 \usage{
 Indiv2DataFrame(tab,
-                nbclass=50,
+                classes=50,
                 columns=c(1,2))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{tab}{Data frame containing the indivudual observations.}
-  \item{nbclass}{Integer, number of class to discretize the structuring variable.}
+  \item{classes}{Integer, number of class to discretize the structuring variable.}
   \item{columns}{Vector of dimension 2 (by default c(1,2)), specifying the number of respectively column x (time) and y (structure).}
 }
 \value{
