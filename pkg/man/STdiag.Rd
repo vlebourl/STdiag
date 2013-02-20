@@ -2,21 +2,21 @@
 \alias{STdiag}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-A function to add specific options to levelplot for plotting structure-time diagram.
+Interface to \link[lattice]{levelplot} for structured time series and rich datasets.
 }
 \description{
-This function is based on the lattice function \link[lattice]{levelplot} and is specifically designed to help plot structure-time diagrams. It takes as input a data frame of the form x, y, z, and plots z~x*y.}
+This function is based on the lattice function \link[lattice]{levelplot} and is specifically designed to help plot structured time series.}
 \usage{
-STdiag(formula=NULL,data=NULL,
-           x=NULL,y=NULL,z=NULL,
-           main=NULL,
-           xlab=NULL,ylab=NULL,
+STdiag(formula,data,
+           x,y,z,
+           main,
+           xlab,ylab,
            log=FALSE,
-           zlim=NULL,znb=50,color="",
+           zlim,znb=50,color="",
            smooth=FALSE,sm,n,probamin = 1e-06,
            bgcolor=rgb(254,254,226,maxColorValue=255),
-           scales=list(),
-           colorkey=NULL,
+           scales,
+           colorkey,
            ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -25,7 +25,7 @@ STdiag(formula=NULL,data=NULL,
   Formula to plot the data. Must be of the form z~x*y with x, y and z being names of columns of the data frame data.
 }
   \item{data}{
-  Data frame to plot as a structure-time diagram. If formula is not provided, it must be a three columns data frame with colomns being x, y and z.
+  Data frame to plot as a structure-time diagram. If formula is not provided, it must be a three columns data frame with colomns being x, y and z. The column used for x can be a numeric or a date (\link[base]{Date},\link[base]{DateTimeClasses}).
 }
   \item{x,y}{Vectors of x and y coordinates in a case of matrix representation.}
   \item{z}{Matrix of size x y giving the number of individuals at coordinate (x,y).}

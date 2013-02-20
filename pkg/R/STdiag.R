@@ -12,18 +12,31 @@
 #     -- bgcolor: rgb(), color of the background of the plot
 
 STdiag <-
-  function(formula=NULL,data=NULL,
-           x=NULL,y=NULL,z=NULL,
-           main=NULL,
-           xlab=NULL,ylab=NULL,
+  function(formula,data,
+           x,y,z,
+           main,
+           xlab,ylab,
            log=FALSE,
-           zlim=NULL,znb=50,color="",
+           zlim,znb=50,color="",
            smooth=FALSE,sm,n,probamin=1e-6,
            bgcolor=rgb(254,254,226,maxColorValue=255),
-           scales=list(),
-           colorkey=NULL,
+           scales, colorkey,
            ...)
   {
+    
+    # if arguments are missing, put the value to NULL
+    if (missing(formula)){cat('missing');formula <- NULL}
+    if (missing(data)){data <- NULL}
+    if (missing(x)){x <- NULL}
+    if (missing(y)){y <- NULL}
+    if (missing(z)){z <- NULL}
+    if (missing(main)){main <- NULL}
+    if (missing(xlab)){xlab <- NULL}
+    if (missing(ylab)){ylab <- NULL}
+    if (missing(zlim)){zlim <- NULL}
+    if (missing(scales)){scales <- list()}
+    if (missing(colorkey)){colorkey <- NULL}
+    
     if(inherits(formula,"matrix")){z=formula;formula=NULL}
     if(inherits(formula,"data.frame")){data=formula;formula=NULL}
     if (is.null(data)&!is.null(z))
