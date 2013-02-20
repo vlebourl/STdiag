@@ -2,9 +2,9 @@
 \alias{STdiag-package}
 \docType{package}
 \title{
-Plot a structure time diagram}
+A package to plot structured population dynamics}
 \description{
-This package provides a function to plot a structure-time diagram and an bi-directional interpolation function. }
+This package provides functions to plot a structure-time diagram and smooth or interpolate the data. }
 \details{
 \tabular{ll}{
 Package: \tab STdiag\cr
