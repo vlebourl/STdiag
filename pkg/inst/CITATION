@@ -1,5 +1,5 @@
 bibentry("Manual",
-         title = "A package to provide a simple graphical method to reveal a structured population dynamic. ",
+         title = "An R package for displaying structured population dynamics.",
          author = person("Vincent Le Bourlot"),
          organization = "CNRS, ENS, UPMC, UMR 7625 Ecology & Evolution.",
          address      = "7 quai St Bernard, 75005 Paris",
