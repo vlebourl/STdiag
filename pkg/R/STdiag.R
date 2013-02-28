@@ -120,9 +120,9 @@ STdiag <-
       at=at[index]
       char=character(length(at))
       match=match(mat[1,],at)
-      char[match[!is.na(match)]]=mat[1,!is.na(match)]
-      char[1]=at[1]
-      char[length(at)]=at[length(at)]
+      char[match[!is.na(match)]]=format(mat[1,!is.na(match)],sci=T)
+      char[1]=format(at[1],sci=T)
+      char[length(at)]=format(at[length(at)],sci=T)
       colKey=list(labels=list(cex=1
                                 ,at=log10(at)
                                 ,labels=char)
