@@ -186,12 +186,12 @@ STdiag <-
                  col.regions=col,  #color scale to use
                  at=zat,  #where to put the colors
                  colorkey=colKey,  #where to draw the ticks on the color bar
-                 xlab=list(xlab,cex=1),ylab=list(ylab,cex=1), #write axes labels
+                 xlab=xlab,ylab=ylab, #write axes labels
                  main=as.character(main),  #write main title
                  scales=scales, #draw ticks inside the box
                  ...
     )
-    trellis.par.set("panel.background", sb.bu) 
+    trellis.par.set(sb.bu) 
     return(lp)
     
   }
