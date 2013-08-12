@@ -19,6 +19,7 @@ STdiag <-
            log=FALSE,
            zlim,znb=50,color="",
            smooth=FALSE,sm,n,probamin=1e-6,
+           interp=FALSE,intervX,intervY,
            bgcolor=rgb(254,254,226,maxColorValue=255),
            scales, colorkey,
            ...)
@@ -60,6 +61,17 @@ STdiag <-
       formula=as.formula(paste(names[1]," ~ ",names[2],"*",names[3],sep=""))
     }
     
+    if(interp){
+      if(missing(intervX)){
+        intervX=min(diff(unique(sort(data[[names[2]]]))))
+      }
+      if(missing(intervY)){
+        intervY=min(diff(unique(sort(data[[names[3]]]))))
+      }
+      data=data.frame(data[[names[2]]],data[[names[3]]],data[[names[1]]])
+      colnames(data)=names[c(2,3,1)]
+      data=Interpolation(data,intervX,intervY)
+    }
     if(smooth){
       if(missing(sm)){
         sm=0.5

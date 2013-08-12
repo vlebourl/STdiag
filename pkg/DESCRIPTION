@@ -9,7 +9,11 @@ Description: This package contains functions to plot a structure-time
   diagram with different options concerning the color scale, 
   and the interpolation. An example of the use of the function is given using 
   a sample data set.
+<<<<<<< .mine
+Depends: R(>= 3.0.0), lattice, akima, fields, MASS, latticeExtra
+=======
 Depends: R(>= 3.0.0), lattice, akima, fields, MASS
+>>>>>>> .r28
 LazyLoad: yes
 LazyData: yes
 License: CeCILL (file LICENSE)
