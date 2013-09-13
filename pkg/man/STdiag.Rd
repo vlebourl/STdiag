@@ -14,6 +14,7 @@ STdiag(formula,data,
            log=FALSE,
            zlim,znb=50,color="",
            smooth=FALSE,sm,n,probamin = 1e-06,
+           interp = FALSE, intervX, intervY,
            bgcolor=rgb(254,254,226,maxColorValue=255),
            scales,
            colorkey,
@@ -50,6 +51,8 @@ STdiag(formula,data,
 \item{smooth}{Logical. If TRUE, STdiag plots a 2d kernel density plot instead of the number of individuals. Kernel density calculation is based on \link[MASS]{kde2d}.}
 \item{sm}{If smooth is TRUE, scalar in [0,1] defining the smoothness of the kernel density estimation. 0 for the raw data, 1 for bandwith in x and y direction given by /link[MASS]{bandwidth.nrd}.}
 \item{n}{If smooth is TRUE, number of points on the x y grid.}
+\item{interp}{Logical. Wether a bilinear interpolation should be applied to the data before plotting.}
+\item{intervX,intervY}{Intergers, distance between two points on X and Y for the interpolation.}
 \item{probamin}{Numeric setting the identity with 0 when computing the kernel density estimate, for comfort of plotting. Default value is set to 1e-06.}
 \item{bgcolor}{
   \link[grDevices]{rgb}, color of the background of the plot.
