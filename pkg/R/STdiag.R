@@ -114,6 +114,10 @@ STdiag <-
     
     
     # Define the color scale
+    if(is.list(color)){
+      colo=color[[2]]
+      color=color[[1]]
+    }
     col=switch(color,
                gray = gray.colors(I(znb+10),start=0,end=1)[znb:1],
                topo = topo.colors(I(znb+10)),
@@ -121,8 +125,10 @@ STdiag <-
                heat = heat.colors(I(znb+10)),
                cm = cm.colors(I(znb+10)),
                rainbow=rainbow(I(znb+10),alpha=0.8)[znb:1],
+               custom=colo,
                tim.colors(I(znb+10))         
     )
+    
     # Define where to draw ticks on the colorbar.
     if(log){
       # Produce vector of position of ticks

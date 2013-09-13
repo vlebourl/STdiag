@@ -8,7 +8,7 @@ A function to do bi-directionnal linear interpolation over x and y.
 Interpolation takes a three columns data frame to do a linear interpolation over X with points seperated by intervX then over Y with points seperated by intervY.
 }
 \usage{
-Interpolation(Tab, intervX = NULL, intervY = NULL)
+Interpolation(Tab, intervX = NULL, intervY = NULL, mini=T)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,6 +21,7 @@ Interval between two interpolated points over X axis.
   \item{intervY}{
 Interval between two interpolated points over Y axis.
 }
+\item{mini}{Logical, if TRUE, the return result is subset(Tab,Tab$z>=min(subset(Tab$z,Tab$z>0)))}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
