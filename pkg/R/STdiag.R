@@ -159,7 +159,7 @@ STdiag <-
     }else if(is.logical(colorkey) & colorkey==TRUE){
       colKey=colKey
     }else { #if(!is.null(colorkey))
-      colKey=colorkey
+      colKey=c(colKey,colorkey)
     }
     
     # Create vector zat to position the colors
