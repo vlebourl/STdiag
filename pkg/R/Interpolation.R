@@ -3,7 +3,6 @@
 # and two Y values (intervY)
 
 Interpolation=function(Tab,intervX=NULL,intervY=NULL,mini=T){
-  require(fields)
   #Test if Tab has the right format, if not, exit
   if(!is.data.frame(Tab))
   {cat("Tab must be a data frame.")
