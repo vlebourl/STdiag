@@ -10,7 +10,7 @@ STdiag.measure = function(stdiag,type=c("point","line"),region=FALSE,range=3.3,p
     return(y)
   }
   
-  region = function(x,y,rx,ry,data){
+  getregion = function(x,y,rx,ry,data){
     return(
       data[data$x>=x-rx & data$x<=x+rx & data$y>=y-ry & data$y<=y+ry,]
     )
@@ -81,13 +81,13 @@ STdiag.measure = function(stdiag,type=c("point","line"),region=FALSE,range=3.3,p
     
   }
   
-  if(region){
+  if(region==TRUE){
     subdata=data.frame(x=numeric(0),y=numeric(0),z=numeric(0))
     xs=unique(data$x[data$x>=min(ret$x)&data$x<=max(ret$x)])
     for(xi in xs){
       yi=gety(xi,ret$x,ret$y)
       yi=data$y[which.min(abs(yi-data$y))]
-      subdata=rbind(subdata,region(xi,yi,range*mean(diff(unique(data$x))),range*mean(diff(unique(data$y))),data))
+      subdata=rbind(subdata,getregion(xi,yi,range*mean(diff(unique(data$x))),range*mean(diff(unique(data$y))),data))
     }
     print(update(stdiag,panel=function(...){panel.levelplot(...);panel.lines(data$x[i],data$y[i],type="o",pch=21,lwd=3,col=1,fill=0,cex=1.2);panel.points(data$x[i],data$y[i],pch=21,lwd=3,col='white',fill=1,cex=1.2); panel.points(subdata$x,subdata$y)}))
     ret=list(selection=ret,region=subdata)
