@@ -425,6 +425,7 @@ STdiag <-
                  ...
     )
     trellis.par.set(sb.bu) 
+    lp$logcol = log
     return(lp)
     
   }
