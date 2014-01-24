@@ -20,10 +20,4 @@ Vincent Le Bourlot
 
 Maintainer: Vincent Le Bourlot <vincent.le.bourlot@ens.fr>
 }
-\references{
-}
 \keyword{ package }
-\seealso{
-}
-\examples{
-}

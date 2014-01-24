@@ -12,4 +12,5 @@ Description: This package contains functions to plot a structure-time
 Depends: R(>= 3.0.0), lattice, akima, fields, MASS, latticeExtra
 LazyLoad: yes
 LazyData: yes
-License: CeCILL (file LICENSE)
+License: CeCILL
+License_restricts_use: yes

@@ -67,14 +67,10 @@ STdiag(formula,data,
   Further arguments passed to levelplot.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+
 \value{
 No values is returned. Only the diagram is displayed. To record the plot, use usual display functions such as \link[grDevices]{pdf} for instance.}
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Vincent Le Bourlot
 }
@@ -100,7 +96,3 @@ STdiag(data=sample,log=FALSE,color="tim")
 STdiag(data=sample)
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

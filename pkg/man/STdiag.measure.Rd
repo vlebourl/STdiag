@@ -6,7 +6,16 @@ Hand measures on a structure time diagram}
 \description{
 This function allows to extract the coordinates of a point, a line or a region of a structure time diagram.}
 \usage{
-STdiag.measure(stdiag,type=c("point","line"),region=FALSE,range=3.3,pch=21,lwd=3,col.line=1,col='white',fill=1,cex=1.2)
+STdiag.measure(stdiag,
+    type=c("point","line"),
+    region=FALSE,
+    range=3.3,
+    pch=21,
+    lwd=3,
+    col.line=1,
+    col='white',
+    fill=1,
+    cex=1.2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

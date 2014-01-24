@@ -28,7 +28,9 @@ Vincent Le Bourlot}
 expand.grid}
 \examples{
 
-# Define a random example data set with one line per individual observed, and time and length in columns
+# Define a random example data set 
+# with one line per individual observed, 
+# and time and length in columns
 n=20;r=50;
 t=round(runif(n=n,min=0,max=100))
 example=data.frame(time=sort(rep(t,r)),length=(rnorm(n=n*r,mean=1000,sd=2)))
