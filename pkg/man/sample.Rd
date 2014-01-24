@@ -16,9 +16,6 @@ A sample data frame to demonstrate how to use STdiag, of a size structured popul
     \item{\code{z}}{a numeric vector giving the number or density of individuals/counts at time x and structuring element value y.}
   }
 }
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
 \examples{
 data(sample)
 STdiag(data=sample)

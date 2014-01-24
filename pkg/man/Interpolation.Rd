@@ -23,26 +23,14 @@ Interval between two interpolated points over Y axis.
 }
 \item{mini}{Logical, if TRUE, the return result is subset(Tab,Tab$z>=min(subset(Tab$z,Tab$z>0)))}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
 Returns a three data frame of the form x, y and z with the same column names as input data frame.
-}
-\references{
-%% ~put references to the literature/web site here ~
 }
 \author{
 Vincent Le Bourlot
 }
 \note{
 For further details on the use of interp, please refer to help(interp).
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 # an example using the dataset sample provided
