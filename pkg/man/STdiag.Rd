@@ -18,6 +18,7 @@ STdiag(formula,data,
            bgcolor=rgb(254,254,226,maxColorValue=255),
            scales,
            colorkey,
+           panel,
            ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -63,6 +64,7 @@ STdiag(formula,data,
 \item{colorkey}{
   Logical or list of arguments passed to levelplot colorkey option.
 }
+\item{panel}{arguments passed to panel option of levelplot. Default is \code{function(...){levelplot(...)}}}
 \item{...}{
   Further arguments passed to levelplot.
 }
