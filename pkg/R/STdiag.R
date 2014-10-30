@@ -21,7 +21,9 @@ STdiag <-
            smooth=FALSE,sm,n,probamin=1e-6,
            interp=FALSE,intervX,intervY,
            bgcolor=rgb(254,254,226,maxColorValue=255),
-           scales, colorkey,panel,
+           scales, colorkey,
+           contour,cuts,
+           panel,
            ...)
   {
     
@@ -37,6 +39,7 @@ STdiag <-
     if (missing(zlim)){zlim <- NULL}
     if (missing(scales)){scales <- list()}
     if (missing(colorkey)){colorkey <- NULL}
+    if (missing(contour)){contour<-F}
     
     if(inherits(formula,"matrix")){z=formula;formula=NULL}
     if(inherits(formula,"data.frame")){data=formula;formula=NULL}
@@ -195,7 +198,25 @@ STdiag <-
     
     # Create the plot
     if(missing(panel)){
-      panel=function(...){panel.levelplot(...)}
+      if(contour==F){
+      panel=function(...){panel.levelplot(...)}}
+      else{
+        if(missing(cuts)) cuts=length(zat)/10
+        if(length(cuts)>1) {contAt=cuts
+        }else{contAt=zat[seq(1,length(zat),length.out=cuts+2)]     }
+        panel=function(...,at,contour,region){
+          panel.levelplot(...,at=zat,contour=F,region=T);
+          panel.contourplot(...,at=signif(contAt,1),contour=T,region=F,labels=F,pretty=T)}}
+    } else {
+      pfun=panel
+      if(missing(cuts)) cuts=length(zat)/10
+      if(length(cuts)>1) {contAt=cuts
+      }else{contAt=zat[seq(1,length(zat),length.out=cuts+2)]     }
+      panel=function(...,at,contour,region){
+        panel.levelplot(...,at=zat,contour=F,region=T);
+        panel.contourplot(...,at=signif(contAt,1),contour=T,region=F,labels=F,pretty=T)
+        pfun(...)
+      }
     }
     
     sb <- trellis.par.get() 
