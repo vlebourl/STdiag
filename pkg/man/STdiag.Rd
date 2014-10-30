@@ -12,12 +12,14 @@ STdiag(formula,data,
            main,
            xlab,ylab,
            log=FALSE,
-           zlim,znb=50,color="",
+           zlim,znb=50,
+           color="",
            smooth=FALSE,sm,n,probamin = 1e-06,
            interp = FALSE, intervX, intervY,
            bgcolor=rgb(254,254,226,maxColorValue=255),
            scales,
            colorkey,
+           contour,cuts,
            panel,
            ...)
 }
@@ -47,7 +49,7 @@ STdiag(formula,data,
 }
   \item{color}{
   Character string, type of color gradient to use. can be either one of gray, topo, terrain
-  heat, tim, cm or rainbow. default is tim (see \link[fields]{tim.colors} for details).
+  heat, tim, cm or rainbow. default is tim (see \link[fields]{tim.colors} for details). Custom colormap can be provided with the key word 'custom' in the format {list('custom',col)} where {col} is a vector of colors.
 }
 \item{smooth}{Logical. If TRUE, STdiag plots a 2d kernel density plot instead of the number of individuals. Kernel density calculation is based on \link[MASS]{kde2d}.}
 \item{sm}{If smooth is TRUE, scalar in [0,1] defining the smoothness of the kernel density estimation. 0 for the raw data, 1 for bandwith in x and y direction given by /link[MASS]{bandwidth.nrd}.}
@@ -63,6 +65,12 @@ STdiag(formula,data,
 }
 \item{colorkey}{
   Logical or list of arguments passed to levelplot colorkey option.
+}
+\item{contour}{
+  Logical, wether to add contour on the plot. Default FALSE.
+}
+\item{cuts}{
+  Number of contour lines to plot or a vector specifying where the contours should be plotted.
 }
 \item{panel}{arguments passed to panel option of levelplot. Default is \code{function(...){levelplot(...)}}}
 \item{...}{
