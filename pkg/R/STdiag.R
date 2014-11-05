@@ -120,6 +120,7 @@ STdiag <-
     if(is.list(color)){
       colo=color[[2]]
       color=color[[1]]
+      znb=min(znb,length(colo))
     }
     col=switch(color,
                gray = gray.colors(I(znb+10),start=0,end=1)[znb:1],
@@ -204,6 +205,7 @@ STdiag <-
         if(missing(cuts)) cuts=length(zat)/10
         if(length(cuts)>1) {contAt=cuts
         }else{contAt=zat[seq(1,length(zat),length.out=cuts+2)]     }
+	if(log){contAt=log10(contAt)}
         panel=function(...,at,contour,region){
           panel.levelplot(...,at=zat,contour=F,region=T);
           panel.contourplot(...,at=signif(contAt,1),contour=T,region=F,labels=F,pretty=T)}}
@@ -212,6 +214,7 @@ STdiag <-
       if(missing(cuts)) cuts=length(zat)/10
       if(length(cuts)>1) {contAt=cuts
       }else{contAt=zat[seq(1,length(zat),length.out=cuts+2)]     }
+      if(log){contAt=log10(contAt)}
       panel=function(...,at,contour,region){
         panel.levelplot(...,at=zat,contour=F,region=T);
         panel.contourplot(...,at=signif(contAt,1),contour=T,region=F,labels=F,pretty=T)
