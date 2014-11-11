@@ -1,7 +1,7 @@
 Package: STdiag
 Type: Package
 Title: This package provides functions to plot a structure-time diagram
-Version: 1.7.1
+Version: 1.7.2
 Date: 2012-10-23
 Author: Vincent Le Bourlot
 Maintainer: Vincent Le Bourlot <vincent.le.bourlot@ens.fr>
