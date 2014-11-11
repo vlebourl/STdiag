@@ -17,7 +17,7 @@ STdiag <-
            main,
            xlab,ylab,
            log=FALSE,
-           zlim,znb=50,color="",
+           zlim,znb=11,color="",
            smooth=FALSE,sm,n,probamin=1e-6,
            interp=FALSE,intervX,intervY,
            bgcolor=rgb(254,254,226,maxColorValue=255),
@@ -123,6 +123,7 @@ STdiag <-
       znb=min(znb,length(colo))
     }
     col=switch(color,
+	       tim=tim.colors(I(znb+10)),
                gray = gray.colors(I(znb+10),start=0,end=1)[znb:1],
                topo = topo.colors(I(znb+10)),
                terrain = terrain.colors(I(znb+10)),
@@ -130,7 +131,7 @@ STdiag <-
                cm = cm.colors(I(znb+10)),
                rainbow=rainbow(I(znb+10),alpha=0.8)[znb:1],
                custom=colo,
-               tim.colors(I(znb+10))         
+               brewer.pal(11, "RdYlBu")[11:1]    
     )
     
     # Define where to draw ticks on the colorbar.
