@@ -49,7 +49,7 @@ STdiag(formula,data,
 }
   \item{color}{
   Character string, type of color gradient to use. can be either one of gray, topo, terrain
-  heat, tim, cm or rainbow. default is tim (see \link[fields]{tim.colors} for details). Custom colormap can be provided with the key word 'custom' in the format {list('custom',col)} where {col} is a vector of colors.
+  heat, tim, cm or rainbow. default is  brewer.pal(11, "RdYlBu")[11:1] (see \link[RColorBrewer]{brewer.pal} for details). Custom colormap can be provided with the key word 'custom' in the format {list('custom',col)} where {col} is a vector of colors.
 }
 \item{smooth}{Logical. If TRUE, STdiag plots a 2d kernel density plot instead of the number of individuals. Kernel density calculation is based on \link[MASS]{kde2d}.}
 \item{sm}{If smooth is TRUE, scalar in [0,1] defining the smoothness of the kernel density estimation. 0 for the raw data, 1 for bandwith in x and y direction given by /link[MASS]{bandwidth.nrd}.}
