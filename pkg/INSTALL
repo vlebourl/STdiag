@@ -1,0 +1,1 @@
+install.packages("STdiag",dependencies=TRUE, repos=c("http://R-Forge.R-project.org", "http://cran.cnr.berkeley.edu"),type="source")
