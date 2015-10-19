@@ -53,10 +53,6 @@ Vincent Le Bourlot}
 \seealso{
 \code{\link{STdiag}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
 # stdiag=STdiag(sample, log=TRUE)
 # STdiag.measure(stdiag,"p",TRUE,range=5)
 }
