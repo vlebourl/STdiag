@@ -1,2 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-import(lattice, fields, MASS, latticeExtra)
+import(lattice, fields, MASS, latticeExtra, RColorBrewer)
