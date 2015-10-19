@@ -31,7 +31,7 @@ STdiag.measure(stdiag,
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
-This function allows to extract the coordinates of a point, a line or a region of a structure time diagram. If \code{region=TRUE}, the points to return are determined by the range of the region. The parameter \code{range} defines this range. If the wanted point coordinates are \code{x} and \code{y} and the original data are \code{data}, the region is defined by x in \code{x - range * mean(diff(unique(data$x)))} and \code{x + range * mean(diff(unique(data$x)))} and y in \code{y - range * mean(diff(unique(data$y)))} and \code{y - range * mean(diff(unique(data$y)))}.
+This function allows to extract the coordinates of a point, a line or a region of a structure time diagram. If \code{region=TRUE}, the points to return are determined by the range of the region. The parameter \code{range} defines this range. If the wanted point coordinates are \code{x} and \code{y} and the original data are \code{data}, the region is defined by x in \code{x - range * mean(diff(unique(data$x)))} and \code{x + range * mean(diff(unique(data$x)))} and y in \code{y - range * mean(diff(unique(data$y)))} and \code{y + range * mean(diff(unique(data$y)))}.
 }
 \value{
 %%  ~Describe the value returned
