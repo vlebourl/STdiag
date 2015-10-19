@@ -2,7 +2,7 @@ STdiag.measure = function(stdiag,type=c("point","line"),region=FALSE,range=3.3,p
   graphics.off()
   print(stdiag)
   
-  ### som used functions
+  ### some used functions
   gety = function(x,datax,datay){
     if(length(datay)==1){return(datay)}
     lm=lm(datay~datax)
