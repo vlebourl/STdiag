@@ -1,11 +1,11 @@
 Package: STdiag
 Type: Package
-Title: This package provides functions to plot a structure-time diagram
-Version: 1.7.3
-Date: 2012-10-23
+Title: Functions to Plot a Structure-Time Diagram
+Version: 1.7.4
+Date: 2015-10-22
 Author: Vincent Le Bourlot
 Maintainer: Vincent Le Bourlot <vincent.le.bourlot@ens.fr>
-Description: This package contains functions to plot a structure-time 
+Description: Contains functions to plot a structure-time 
   diagram with different options concerning the color scale, 
   and the interpolation. An example of the use of the function is given using 
   a sample data set.
